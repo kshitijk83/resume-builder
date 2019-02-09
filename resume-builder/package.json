@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "mongoose": "^5.4.10",
     "passport": "^0.4.0",
     "passport-local-mongoose": "^5.0.1",
