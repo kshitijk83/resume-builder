@@ -7,10 +7,40 @@ import Skills from './containers/infos/skills/skills';
 import Educations from './containers/infos/educations/educations';
 import Projects from './containers/infos/projects/projects';
 import Extras from './containers/infos/extras/extras';
+import Auth from './containers/Auth/auth';
 
 class App extends Component {
 
   state={
+    controls: {
+      email: {
+          elementType: 'input',
+          elementConfig: {
+              type: 'text',
+              placeholder: 'Your Email'
+          },
+          value: '',
+          validation: {
+              isRequired: true
+          },
+          valid: false,
+          touched: false
+      },
+      password: {
+          elementType: 'input',
+          elementConfig: {
+              type: 'password',
+              placeholder: 'password'
+          },
+          value: '',
+          validation: {
+              isRequired: true,
+              minLength: 6
+          },
+          valid: false,
+          touched: false
+      }
+  },
     personalInfo: {
       name:{
         elementType: 'input',
@@ -76,6 +106,7 @@ class App extends Component {
             placeholder: 'education',
         },
         value: '',
+        std: '',
         details: '',
         id: '0',
         validation: {
@@ -283,6 +314,44 @@ class App extends Component {
 
     this.setState({extras: changedInfo}); }
 
+
+    checkValidity=(value ,rules)=>{
+      let isValid = true;
+      if(rules&&rules.isRequired){
+          isValid = value.trim()!==''&&isValid;
+      }
+
+      if(rules&&rules.minLength){
+          isValid = value.length>=rules.minLength&&isValid;
+      }
+
+      if(rules&&rules.maxLength){
+          isValid = value.length<=rules.maxLength&&isValid;
+      }
+
+      return isValid;
+  }
+
+
+    onChangeAuthHandler=(event, controlName)=>{
+      // console.log(this.state.controls[controlName].validation);
+      const updatedControls={
+        ...this.state.controls,
+      [controlName]: {
+          ...this.state.controls[controlName],
+          value: event.target.value,
+          valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
+          touched: true
+      }
+    }
+      this.setState({controls: updatedControls});
+    }
+
+    authHandler=(event)=>{
+      event.preventDefault();
+      console.log('hey');
+    }
+
   render() {
 
     const personalData = [];
@@ -312,17 +381,30 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Preview
-        name={this.state.personalInfo.name.value}
-        email={this.state.personalInfo.email.value}
-        phone={this.state.personalInfo.phone.value}
-        skills={this.state.skills}
-        delete={(index, property)=>this.deleteHandler(index, property)}
-        educations={this.state.educations}
-        projects={this.state.projects}
-        extras={this.state.extras}/>
+        
 
         <Switch>
+
+        <Route path="/login" exact render={()=>{
+            return <Auth
+            controls={this.state.controls}
+            changed = {(event, controlName)=>this.onChangeAuthHandler(event, controlName)}
+            auth = {(event)=>this.authHandler(event)}
+            />
+          }} />
+
+        <Route path="/" render={()=>{
+          return <Preview
+          name={this.state.personalInfo.name.value}
+          email={this.state.personalInfo.email.value}
+          phone={this.state.personalInfo.phone.value}
+          skills={this.state.skills}
+          delete={(index, property)=>this.deleteHandler(index, property)}
+          educations={this.state.educations}
+          projects={this.state.projects}
+          extras={this.state.extras}/>
+        }}/>
+
           <Route path="/personalInfo" exact render={()=>{
             return <PersonalInfo
             personalData={personalData}

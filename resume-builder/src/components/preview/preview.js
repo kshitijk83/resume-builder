@@ -21,8 +21,12 @@ class Preview extends Component {
                 <div className="left">
                     {s.education.value}
                 </div>
-                <div className="right">
+                <div className="center">
                     {s.education.details}
+                </div>
+
+                <div className="right">
+                    {s.education.std}
                 </div>
 
                 {s.education.value?<button onClick={()=>this.props.delete(this.props.educations.indexOf(s), "educations")} >delete</button>:null}
