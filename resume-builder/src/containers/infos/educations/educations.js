@@ -26,7 +26,7 @@ class educations extends Component{
             return (
             <div className="input-box" key={educations.indexOf(e)}>
                 <div className="input-container">
-                <div className="details">Education Details</div>
+                <div className="name">Education Details</div>
                     <Input
                     elementType={e.education.elementConfig.elementType}
                     elementConfig={e.education.elementConfig}
@@ -35,6 +35,18 @@ class educations extends Component{
                     touched={e.education.touched}
                     shouldValidate={e.education.validation}
                     changed={(event)=>this.props.changed(event, e.education.id, "value")}
+                    />
+                </div>
+                <div className="input-container">
+                <div className="degree">Degree/Standard</div>
+                    <Input
+                    elementType={e.education.elementConfig.elementType}
+                    elementConfig={e.education.elementConfig}
+                    value={e.education.std}
+                    invalid={!e.education.valid}
+                    touched={e.education.touched}
+                    shouldValidate={e.education.validation}
+                    changed={(event)=>this.props.changed(event, e.education.id, "std")}
                     />
                 </div>
                 <div className="input-container">
