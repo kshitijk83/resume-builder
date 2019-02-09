@@ -12,7 +12,7 @@ var express = require('express'),
     const JWTStrategy = passportJWT.Strategy;
     const ExtractJWT = passportJWT.ExtractJwt;
     const bcrypt = require('bcrypt'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 5000;
 
 
     var url = 'mongodb://localhost/resume_builder'

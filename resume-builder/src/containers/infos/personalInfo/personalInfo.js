@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../../../UI/input/input';
 import { Link } from 'react-router-dom';
-import classes from './personalInfo';
+import './personalInfo.css';
 
 const personalInfo = (props) => {
     console.log(props); 
@@ -19,10 +19,18 @@ const personalInfo = (props) => {
         changed={(event)=>props.changed(event, d.id)}/>
     });
     return (
-        <>
+        <div className="box">
             {inputs}
-            <Link to="/skills" className={classes.link}>Skills</Link>
-        </>
+            <Link to="/skills" style={
+                {
+                    backgroundColor: 'red',
+                    color: 'white',
+                    padding: '1em 1.5em',
+                    textDecoration: 'none',
+                    textTransform: 'uppercase'
+                }
+            }>Skills</Link>
+        </div>
     );
 }
 
