@@ -6,17 +6,16 @@ var userSchema = mongoose.Schema({
         type: String,
         unique: true,
     },
+
     password: {
         type: String,
     },
     data: {
         
     },
-    token: {
-        type: String
-    },
-    tokenExpires: {
-        type: Date
+    isVerified: {
+        type: Boolean, 
+        default: false
     }
 });
 adminSchema.plugin(passportLocalMongoose);
