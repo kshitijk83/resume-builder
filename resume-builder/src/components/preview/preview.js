@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './preview.css';
+import './preview.css';
 class Preview extends Component {
 
     render(){
@@ -62,36 +62,45 @@ class Preview extends Component {
 
         return (
             <>
-            <div class="start ">
-
+            <div >
+            <span className="pr-wid pr-green">
+            </span>
+            <span className="pr-wid pr-blue">
+            </span>
+            <span className="pr-wid pr-purple">
+            </span>
+            <span className="pr-wid pr-yellow">
+            </span>
+            <span className="pr-wid pr-red">
+            </span>
             </div>
-                <div classname="name">
-                    name:{this.props.name}
+                <div className="pr-name">
+                    Shivam{this.props.name}
                 </div>
-                <div classname="email">
+                <div className="pr-email">
                     email: {this.props.email}
                 </div>
-                <div classname="phone">
+                <div className="pr-phone">
                     phone: {this.props.phone}
                 </div>
-                <div className="skills">
+                <div className="pr-skills">
                 skills: {skills}
                 </div>
-                <div class="education">
+                <div className="pr-education">
                 education:
-                <div class="educationEntry">
+                <div className="pr-educationEntry">
                     {educations}
                 </div>
                 </div>
-                <div class= "projects">
+                <div className= "pr-projects">
                     Projects:
-                    <div class="projectEntry">
+                    <div className="pr-projectEntry">
                     {projects}
                     </div>
                 </div>
-                <div class="extras">
+                <div className="pr-extras">
                     extras:
-                    <div class="extrasEntry">
+                    <div className="pr-extrasEntry">
                         {extras}
                     </div>
                 </div>

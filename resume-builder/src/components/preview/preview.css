@@ -6,3 +6,35 @@ div{
 .skills{
     display: inline-block;
 }
+
+
+.pr-wid {
+    padding: 1px 10%;
+    font-size: 5px
+}
+
+.pr-green {
+    background-color: rgb(77, 163, 89);
+}
+
+.pr-blue {
+    background-color: rgb(47, 128, 165);
+}
+
+.pr-purple {
+    background-color: rgb(57, 52, 105);
+}
+.pr-yellow {
+    background-color: rgb(230, 255, 89);
+}
+.pr-red {
+    background-color: rgb(211, 78, 74);
+}
+
+.pr-name {
+    font-size: 30px;
+}
+
+.pr-email, .pr-phone {
+    color: rgb(95, 95, 95);
+}
