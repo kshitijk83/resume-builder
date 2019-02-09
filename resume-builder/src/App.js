@@ -49,14 +49,14 @@ class App extends Component {
     }
   },
   skills: [{
-      skill1: {
+      skill: {
         elementType: 'input',
         elementConfig: {
             type: 'text',
             placeholder: 'Your skills'
         },
         value: '',
-        id: '1',
+        id: '0',
         validation: {
             isRequired: true
         },
@@ -64,14 +64,14 @@ class App extends Component {
         touched: false
       },
     },{
-      skill2: {
+      skill: {
         elementType: 'input',
         elementConfig: {
             type: 'text',
             placeholder: 'Your skills'
         },
         value: '',
-        id: '2',
+        id: '1',
         validation: {
             isRequired: true
         },
@@ -89,6 +89,42 @@ class App extends Component {
     this.setState({ personalInfo: info });
   }
 
+  onChangeSkillHandler(event, id){
+    const info = [...this.state.skills];
+
+    let changedInfo = info.map((s)=>{
+      if(s.skill.id===id){
+        s.skill.value = event.target.value;
+      }
+      return s;
+    })
+
+    console.log(changedInfo);
+    this.setState({skills: changedInfo});
+  }
+
+  addHandler=(numSkills)=>{
+    const info = [...this.state.skills];
+    console.log(info);
+    info.push({
+      skill: {
+        elementType: 'input',
+        elementConfig: {
+            type: 'text',
+            placeholder: 'Your skills'
+        },
+        value: '',
+        id: numSkills-1,
+        validation: {
+            isRequired: true
+        },
+        valid: false,
+        touched: false
+      }
+    })
+    this.setState({skills: info});
+  }
+
   render() {
 
     const personalData = [];
@@ -100,7 +136,6 @@ class App extends Component {
           config: this.state.personalInfo[key],
           value: this.state.personalInfo[key].value
         })
-        // console.log("sd");
       }else if(key==='email'){
         personalData.push({
           id: key,
@@ -114,7 +149,6 @@ class App extends Component {
           value: this.state.personalInfo[key].value
         })
       }
-      // console.log(personalData);
     }
 
     return (
@@ -124,12 +158,15 @@ class App extends Component {
         changed = {(event, id)=>this.onChangeHandler(event, id)}/>
 
         <Skills
-        skills={this.state.skills}/>
+        skills={this.state.skills}
+        changed = {(event, id)=>this.onChangeSkillHandler(event, id)}/>
 
         <Preview
         name={this.state.personalInfo.name.value}
         email={this.state.personalInfo.email.value}
-        phone={this.state.personalInfo.phone.value}/>
+        phone={this.state.personalInfo.phone.value}
+        skills={this.state.skills}
+        add={(num)=>this.addHandler(num)}/>
 
       </div>
     );
