@@ -8,6 +8,7 @@ import Educations from './containers/infos/educations/educations';
 import Projects from './containers/infos/projects/projects';
 import Extras from './containers/infos/extras/extras';
 import Auth from './containers/Auth/auth';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -349,7 +350,10 @@ class App extends Component {
 
     authHandler=(event)=>{
       event.preventDefault();
-      console.log('hey');
+      // console.log('hey');
+      axios.get("https://jsonplaceholder.typicode.com/todos/1")
+        .then(res=>response.json())
+        .then(json=>console.log(json));
     }
 
   render() {

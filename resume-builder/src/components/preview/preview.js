@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import classes from './preview.css';
 class Preview extends Component {
-    
-    
 
     render(){
         let skills = this.props.skills.map((s)=>{
@@ -64,33 +62,36 @@ class Preview extends Component {
 
         return (
             <>
-                <div>
+            <div class="start ">
+
+            </div>
+                <div classname="name">
                     name:{this.props.name}
                 </div>
-                <div>
+                <div classname="email">
                     email: {this.props.email}
                 </div>
-                <div>
+                <div classname="phone">
                     phone: {this.props.phone}
                 </div>
-                <div className={classes.skills}>
+                <div className="skills">
                 skills: {skills}
                 </div>
-                <div>
+                <div class="education">
                 education:
-                <div>
+                <div class="educationEntry">
                     {educations}
-                </div> 
                 </div>
-                <div>
+                </div>
+                <div class= "projects">
                     Projects:
-                    <div>
+                    <div class="projectEntry">
                     {projects}
                     </div>
                 </div>
-                <div>
+                <div class="extras">
                     extras:
-                    <div>
+                    <div class="extrasEntry">
                         {extras}
                     </div>
                 </div>
