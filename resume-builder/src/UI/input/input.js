@@ -33,9 +33,9 @@ const input = (props) => {
                         onChange={props.changed} />
     }
     return (
-        <div className="resume">
+        <>
             {inputElement}
-        </div>
+        </>
     );
 }
 

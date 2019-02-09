@@ -1,7 +1,10 @@
 import React from 'react';
 import Input from '../../../UI/input/input';
+import { Link } from 'react-router-dom';
+import classes from './personalInfo';
 
 const personalInfo = (props) => {
+    console.log(props); 
     let data = [...props.personalData];
     // console.log(props);
     let inputs = data.map((d)=>{
@@ -18,6 +21,7 @@ const personalInfo = (props) => {
     return (
         <>
             {inputs}
+            <Link to="/skills" className={classes.link}>Skills</Link>
         </>
     );
 }
