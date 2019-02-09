@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require("../models/user");
 
 router.get("/data", function (req, res) {
- User.find(function(err, user){
+ User.find({username: req.user.username},function(err, user){
    if(err){
      console.log(err);
      res.json({user: user, success: false, err: err});    

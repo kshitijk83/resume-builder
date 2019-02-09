@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
         type: String,
     },
     data: {
-        
+   
     },
     isVerified: {
         type: Boolean, 
