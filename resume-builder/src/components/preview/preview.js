@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-
+import classes from './preview.css';
 class Preview extends Component {
     
-    constructor(props) {
-        super(props);
-        console.log(props);
-        this.state = {
-            num_skills: props.skills.length,
-        };
-    }
     
+
     render(){
-        // console.log()
-        let numSkills = this.state.num_skills;
         let skills = this.props.skills.map((s)=>{
-            console.log(s);
             return (
-            <>
-                <p key={s.skill.id}>{s.skill.value}</p>
-                {s.skill.value?<button onClick={()=>this.props.delete(numSkills)} >delete</button>:null}
-            </>
+            <div key={s.skill.id}>
+                <p>{s.skill.value}</p>
+                {s.skill.value?<button onClick={()=>this.props.delete(this.props.skills.indexOf(s))} >delete</button>:null}
+            </div>
             );
         })
         return (
@@ -33,10 +24,9 @@ class Preview extends Component {
                 <div>
                     phone: {this.props.phone}
                 </div>
-                <div>
+                <div className={classes.skills}>
                 skills: {skills}
                 </div>
-                <button onClick={()=>this.props.add(numSkills)} >add</button>
             </>
         );
     }

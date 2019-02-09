@@ -1,4 +1,8 @@
 div{
     margin: 3rem;
-    
+
+}
+
+.skills{
+    display: inline-block;
 }

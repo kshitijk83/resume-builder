@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 import PersonalInfo from './containers/infos/personalInfo/personalInfo';
 import Preview from './components/preview/preview';
 import Skills from './containers/infos/skills/skills';
@@ -38,7 +39,7 @@ class App extends Component {
         elementType: 'input',
         elementConfig: {
             type: 'text',
-            placeholder: 'Your skills'
+            placeholder: 'phone'
         },
         value: '',
         validation: {
@@ -57,21 +58,6 @@ class App extends Component {
         },
         value: '',
         id: '0',
-        validation: {
-            isRequired: true
-        },
-        valid: false,
-        touched: false
-      },
-    },{
-      skill: {
-        elementType: 'input',
-        elementConfig: {
-            type: 'text',
-            placeholder: 'Your skills'
-        },
-        value: '',
-        id: '1',
         validation: {
             isRequired: true
         },
@@ -99,13 +85,11 @@ class App extends Component {
       return s;
     })
 
-    console.log(changedInfo);
     this.setState({skills: changedInfo});
   }
 
   addHandler=(numSkills)=>{
     const info = [...this.state.skills];
-    console.log(info);
     info.push({
       skill: {
         elementType: 'input',
@@ -114,7 +98,7 @@ class App extends Component {
             placeholder: 'Your skills'
         },
         value: '',
-        id: numSkills-1,
+        id: numSkills+'',
         validation: {
             isRequired: true
         },
@@ -123,6 +107,12 @@ class App extends Component {
       }
     })
     this.setState({skills: info});
+  }
+
+  deleteHandler=(index)=>{
+    const info = [...this.state.skills];
+    info.splice(index, 1);
+    this.setState({ skills: info });
   }
 
   render() {
@@ -153,20 +143,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        <PersonalInfo
-        personalData={personalData}
-        changed = {(event, id)=>this.onChangeHandler(event, id)}/>
-
-        <Skills
-        skills={this.state.skills}
-        changed = {(event, id)=>this.onChangeSkillHandler(event, id)}/>
 
         <Preview
         name={this.state.personalInfo.name.value}
         email={this.state.personalInfo.email.value}
         phone={this.state.personalInfo.phone.value}
         skills={this.state.skills}
-        add={(num)=>this.addHandler(num)}/>
+        delete={(index)=>this.deleteHandler(index)}/>
+
+        <Switch>
+          <Route path="/personalInfo" exact render={()=>{
+            return <PersonalInfo
+            personalData={personalData}
+            changed = {(event, id)=>this.onChangeHandler(event, id)}/>
+          }} />
+          <Route path="/skills" exact render={()=>{
+            return <Skills
+            skills={this.state.skills}
+            changed = {(event, id)=>this.onChangeSkillHandler(event, id)}
+            add={(num)=>this.addHandler(num)}/>
+          }} />
+
+          
+
+          
+        </Switch>
 
       </div>
     );
