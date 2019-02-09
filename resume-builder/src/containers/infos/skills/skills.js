@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import Input from '../../../UI/input/input';
+import { Link } from 'react-router-dom';
 class skills extends Component{
-    // console.log(skills[0].skill.value);
-    // console.log(skills);
-    // console.log(skills[0].skill);
-    // {
-    //     skills.push({
-    //         id: props.skills[key].id,
-    //         value: props.skills[key].value,
-    //         config: props.skills[key]
-    //     });
-    //     console.log(key);
-    // }
-    // console.log(skills);
+
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +12,7 @@ class skills extends Component{
 
     addNum=()=>{
         let num = this.state.num_skills+1;
-        console.log(num);
+        // console.log(num);
         this.setState({ num_skills: num });
         this.props.add(num);
     }
@@ -45,6 +35,7 @@ class skills extends Component{
             <>
                 {input}
                 <button onClick={this.addNum} >add</button>
+                <Link to="/education" >next</Link>
             </>
         );
     }

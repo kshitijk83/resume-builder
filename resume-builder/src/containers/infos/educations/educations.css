@@ -1,0 +1,12 @@
+.input-box input{
+    display: inline-block;
+}
+.input-container{
+    width: 50%;
+    display: inline-block;
+    margin: 0;
+}
+.details{
+    display: inline-block;
+
+}
