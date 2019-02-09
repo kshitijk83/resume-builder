@@ -1,4 +1,8 @@
-.link{
-    text-decoration: none;
-    color: red;
+.box{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+a{
+    align-self: center;
 }

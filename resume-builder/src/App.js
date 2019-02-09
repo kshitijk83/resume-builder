@@ -350,10 +350,14 @@ class App extends Component {
 
     authHandler=(event)=>{
       event.preventDefault();
-      // console.log('hey');
-      axios.get("https://jsonplaceholder.typicode.com/todos/1")
-        .then(res=>response.json())
-        .then(json=>console.log(json));
+      let words = this.state;
+      // console.log(this.state);
+
+      axios.post("http://localhost:5000/user/data", {
+        ...words
+      })
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err));
     }
 
   render() {
@@ -385,29 +389,25 @@ class App extends Component {
     return (
       <div className="App">
 
-        
+          <Preview
+            name={this.state.personalInfo.name.value}
+            email={this.state.personalInfo.email.value}
+            phone={this.state.personalInfo.phone.value}
+            skills={this.state.skills}
+            delete={(index, property)=>this.deleteHandler(index, property)}
+            educations={this.state.educations}
+            projects={this.state.projects}
+            extras={this.state.extras}/>
 
         <Switch>
 
-        <Route path="/login" exact render={()=>{
+        <Route path="/" exact render={()=>{
             return <Auth
             controls={this.state.controls}
             changed = {(event, controlName)=>this.onChangeAuthHandler(event, controlName)}
             auth = {(event)=>this.authHandler(event)}
             />
           }} />
-
-        <Route path="/" render={()=>{
-          return <Preview
-          name={this.state.personalInfo.name.value}
-          email={this.state.personalInfo.email.value}
-          phone={this.state.personalInfo.phone.value}
-          skills={this.state.skills}
-          delete={(index, property)=>this.deleteHandler(index, property)}
-          educations={this.state.educations}
-          projects={this.state.projects}
-          extras={this.state.extras}/>
-        }}/>
 
           <Route path="/personalInfo" exact render={()=>{
             return <PersonalInfo
@@ -445,6 +445,17 @@ class App extends Component {
             />
           }} />
 
+          {/* <Route path="/:word" exact render={()=>{
+            return <Preview
+            name={this.state.personalInfo.name.value}
+            email={this.state.personalInfo.email.value}
+            phone={this.state.personalInfo.phone.value}
+            skills={this.state.skills}
+            delete={(index, property)=>this.deleteHandler(index, property)}
+            educations={this.state.educations}
+            projects={this.state.projects}
+            extras={this.state.extras}/>
+          }} /> */}
 
         </Switch>
 
