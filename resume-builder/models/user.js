@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
         default: false
     }
 });
-adminSchema.plugin(passportLocalMongoose);
+// userSchema.plugin(passportLocalMongoose);
 
 
 module.exports = mongoose.model("User", userSchema);
