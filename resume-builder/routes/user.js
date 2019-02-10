@@ -24,20 +24,21 @@ router.post("/data", function(req, res){
     //     }
     //     res.json({success: true});
     // });
-    var user = {
-        data: req.body
-    }
-    User.create(user, function(err, data){
-        if(err){
-            console.log(err)
-        } 
-        else
-        {
-            res.send("done done done")
-        }
-    })
-    let x = req.body;
-    console.log(x);
+    // var user = {
+    //     data: req.body
+    // }
+    // User.create(user, function(err, data){
+    //     if(err){
+    //         console.log(err)
+    //     } 
+    //     else
+    //     {
+    //         res.send("done done done")
+    //     }
+    // })
+    // let x = req.body;
+    // console.log(x);
+    res.send("DLJSD")
 });
 
 module.exports = router; 

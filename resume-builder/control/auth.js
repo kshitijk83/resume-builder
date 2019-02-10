@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     login: function (req, res, next) {
+    User.findOne({ email: req.body.username }, function (err, user) {
         passport.authenticate('local', { session: false }, (err, user, info) => {
             if (err || !user) {
                 req.resp = {
@@ -28,8 +29,8 @@ module.exports = {
                     } else {
                         const token = jwt.sign({
                             _id: user._id,
-                            username: user.userName,
-                        }, 'your_jwt_secret');
+                            username: user.username,
+                        }, 'kya karna iska');
                         req.resp = {
                             statusCode: 200,
                             data: {
@@ -41,7 +42,8 @@ module.exports = {
                 });
             }
         })(req, res, next);
-    },
+    })
+},
     signup: function (req, res, next) {
         User.findOne({ email: req.body.username }, function (err, user) {
             if (user) {
@@ -56,7 +58,6 @@ module.exports = {
                 username: req.body.username,
                 password: password,
             });
-
             user.save(function (err) {
                 if (err) {
                     req.resp = {
@@ -74,7 +75,7 @@ module.exports = {
                             const token = jwt.sign({
                                 _id: user._id,
                                 username: user.userName,
-                            }, 'your_jwt_secret');
+                            }, 'kya karna iska');
                             req.resp = {
                                 statusCode: 200,
                                 data: {
