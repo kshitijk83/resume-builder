@@ -9,6 +9,7 @@ import Projects from './containers/infos/projects/projects';
 import Extras from './containers/infos/extras/extras';
 import Auth from './containers/Auth/auth';
 import axios from 'axios';
+import Print from './components/print/print';
 
 class App extends Component {
 
@@ -122,7 +123,7 @@ class App extends Component {
         elementType: 'input',
         elementConfig: {
             type: 'text',
-            placeholder: 'education',
+            placeholder: 'projects',
         },
         value: '',
         desc: '',
@@ -445,8 +446,8 @@ class App extends Component {
             />
           }} />
 
-          {/* <Route path="/:word" exact render={()=>{
-            return <Preview
+          <Route path="/print" exact render={()=>{
+            return <Print
             name={this.state.personalInfo.name.value}
             email={this.state.personalInfo.email.value}
             phone={this.state.personalInfo.phone.value}
@@ -455,7 +456,7 @@ class App extends Component {
             educations={this.state.educations}
             projects={this.state.projects}
             extras={this.state.extras}/>
-          }} /> */}
+          }} />
 
         </Switch>
 

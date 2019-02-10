@@ -1,0 +1,23 @@
+textarea {
+    width: 100%;
+    height: 5rem;
+}
+
+.project-con{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.project-title-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.project-con input {
+    margin: 1rem 0 !important;
+}
+
+.project-desc > *{
+    margin: 1rem 0;
+}

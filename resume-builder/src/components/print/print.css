@@ -1,13 +1,16 @@
-.preview-container {
+.print-container {
     margin: 1rem;
-    border-left: 2px solid black;
+    /* border-left: 2px solid black; */
     padding-left: 1rem;
-    width: 50%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    width: 100vw;
+    background: white;
+    z-index: 1000;
+    min-height: 100% !important;
 
+}
+
+.vanish {
+    display: none !important;
 }
 
 .edu-btn-center{

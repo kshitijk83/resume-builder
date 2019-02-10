@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../UI/input/input';
 import { Link } from 'react-router-dom';
+import './projects.css';
 class Projects extends Component{
 
     constructor(props) {
@@ -47,10 +48,20 @@ class Projects extends Component{
             )
         });
         return(
-            <div className="projects-container">
+            <div className="box">
                 {input}
+                <div className="btn-container">
                 <button onClick={this.addNum} >add</button>
-                <Link to="/extras" >Next</Link>
+                <Link to="/extras" style={
+                        {
+                            backgroundColor: 'red',
+                            color: 'white',
+                            padding: '1em 1.5em',
+                            textDecoration: 'none',
+                            textTransform: 'uppercase'
+                        }
+                        } >Next</Link>
+                </div>
             </div>
         )
     }

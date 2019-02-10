@@ -29,7 +29,7 @@ const personalInfo = (props) => {
                     textDecoration: 'none',
                     textTransform: 'uppercase'
                 }
-            }>Skills</Link>
+            }>Next</Link>
         </div>
     );
 }

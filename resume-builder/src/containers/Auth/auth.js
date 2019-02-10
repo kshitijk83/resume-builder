@@ -18,7 +18,7 @@ class Auth extends Component{
             })
         }
         let form = formElements.map(formElement=>(
-            <label for={formElement.id} key = {formElement.id}
+            <label htmlFor={formElement.id} key = {formElement.id}
             className="inp">
                 <Input 
                 id={formElement.id}

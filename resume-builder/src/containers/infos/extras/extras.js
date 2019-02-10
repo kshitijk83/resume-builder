@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../UI/input/input';
 import { Link } from 'react-router-dom';
+import './extras.css';
 
 class Extras extends Component{
     constructor(props) {
@@ -24,7 +25,7 @@ class Extras extends Component{
             return (
             <div className="extras-box" key={extras.indexOf(e)}>
                 <div className="extras-container">
-                <span className="details">extra: </span>
+                <span className="details">Enter Details</span>
                     <Input
                     elementType={e.extra.elementConfig.elementType}
                     elementConfig={e.extra.elementConfig}
@@ -40,11 +41,23 @@ class Extras extends Component{
             )
         });
         return(
-            <div className="extras">
-                extras:
+            <div className="box">
+                ENTER EXTRA DETAILS
+                <div className="extra-box-con">
                 {input}
-                <button onClick={this.addNum} >add</button>
-                <Link to="/" >Preview</Link>
+                </div>
+                <div className="btn-container">
+                    <button onClick={this.addNum} >add</button>
+                    <Link to="/print" style={
+                        {
+                            backgroundColor: 'red',
+                            color: 'white',
+                            padding: '1em 1.5em',
+                            textDecoration: 'none',
+                            textTransform: 'uppercase'
+                        }
+                        }  >Preview</Link>
+                </div>
             </div>
         )
     }

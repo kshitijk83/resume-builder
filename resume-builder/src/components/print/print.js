@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './preview.css';
-class Preview extends Component {
+import './print.css';
+// import Preview from '../preview/preview';
+class Print extends Component {
 
     render(){
         let skills = this.props.skills.map((s)=>{
             return (
             <div className="skill-container main-desc" key={s.skill.id}>
                     <span className="skill-text" >{s.skill.value}</span>
-                {s.skill.value?<button className="btn-delete" onClick={()=>this.props.delete(this.props.skills.indexOf(s), "skills")} >delete</button>:null}
             </div>
             );
         })
@@ -28,8 +28,6 @@ class Preview extends Component {
                         {s.education.std}
                     </div>
                 </div>
-
-                {s.education.value?<button onClick={()=>this.props.delete(this.props.educations.indexOf(s), "educations")} >delete</button>:null}
             </div>
             );
         })
@@ -44,7 +42,6 @@ class Preview extends Component {
                     <div className="description">
                         {p.project.desc}
                     </div>
-                    {p.project.value?<button onClick={()=>this.props.delete(this.props.projects.indexOf(p), "projects")} >delete</button>:null}
                 </div>
             );
         })
@@ -61,7 +58,7 @@ class Preview extends Component {
         })
 
         return (
-            <div className="preview-container">
+            <div className="print-container">
             <div className="pr" >
             <span className="pr-wid pr-green">
             </span>
@@ -112,4 +109,4 @@ class Preview extends Component {
     }
 }
 
-export default Preview;
+export default Print;
