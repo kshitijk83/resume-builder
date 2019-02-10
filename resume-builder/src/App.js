@@ -10,6 +10,8 @@ import Extras from './containers/infos/extras/extras';
 import Auth from './containers/Auth/auth';
 import axios from 'axios';
 import Print from './components/print/print';
+import Error from './UI/error/error';
+import Signup from './containers/Auth/signup/signup';
 
 class App extends Component {
 
@@ -43,6 +45,35 @@ class App extends Component {
           touched: false
       }
   },
+  controlSignUp: {
+    email: {
+        elementType: 'input',
+        elementConfig: {
+            type: 'text',
+            placeholder: 'Your Email'
+        },
+        value: '',
+        validation: {
+            isRequired: true
+        },
+        valid: false,
+        touched: false
+    },
+    password: {
+        elementType: 'input',
+        elementConfig: {
+            type: 'password',
+            placeholder: 'password'
+        },
+        value: '',
+        validation: {
+            isRequired: true,
+            minLength: 6
+        },
+        valid: false,
+        touched: false
+    }
+},
     personalInfo: {
       name:{
         elementType: 'input',
@@ -151,6 +182,7 @@ class App extends Component {
         touched: false
       },
     }],
+    flash: ""
   }
 
   onChangeHandler=(event, id)=>{
@@ -349,25 +381,73 @@ class App extends Component {
       this.setState({controls: updatedControls});
     }
 
+    onChangeSignupHandler=(event, controlName)=>{
+      console.log(this.state.controls[controlName].validation);
+      const updatedControls={
+        ...this.state.controlSignUp,
+      [controlName]: {
+          ...this.state.controlSignUp[controlName],
+          value: event.target.value,
+          valid: this.checkValidity(event.target.value, this.state.controlSignUp[controlName].validation),
+          touched: true
+      }
+    }
+    console.log(updatedControls);
+      this.setState({controlSignUp: updatedControls});
+    }
+
     authHandler=(event)=>{
       event.preventDefault();
       let email = this.state.controls.email.value;
       let password = this.state.controls.password.value;
       // console.log(controls);
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
+      // localStorage.setItem('email', email);
+      // localStorage.setItem('password', password);
 
-      console.log(localStorage);
-      this.props.history.push({
-        pathname: '/personalInfo'
-      });
+      console.log(email, password);
 
-      axios.post("http://localhost:5000/signup", {
-        email: email,
+      axios.post("http://192.168.43.127:5000/api/signin", {
+        username: email,
         password: password
       })
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err));
+        .then(res=>{
+          if(res.data.token){
+            this.props.history.push({
+              pathname: '/personalInfo',
+            });
+          }
+          console.log(res);
+        })
+        .catch(err=>{
+          this.props.history.push('/err');
+        });
+    }
+
+    authSignupHandler=(event)=>{
+      event.preventDefault();
+      let email = this.state.controlSignUp.email.value;
+      let password = this.state.controlSignUp.password.value;
+      // console.log(controls);
+      // localStorage.setItem('email', email);
+      // localStorage.setItem('password', password);
+
+      console.log(email, password);
+
+      axios.post("http://192.168.43.127:5000/api/signup", {
+        username: email,
+        password: password
+      })
+        .then(res=>{
+          console.log(res);
+          this.setState({flash: "User Created Please Sign In"});
+          this.props.history.push({
+            pathname: '/',
+          })
+        })
+        .catch(err=>{
+          this.props.history.push('/err');
+        });
+      // console.log("sdjfh");
     }
 
   render() {
@@ -396,6 +476,7 @@ class App extends Component {
       }
     }
 
+
     return (
       <div className="App">
 
@@ -408,7 +489,8 @@ class App extends Component {
             delete={(index, property)=>this.deleteHandler(index, property)}
             educations={this.state.educations}
             projects={this.state.projects}
-            extras={this.state.extras}/>
+            extras={this.state.extras}
+            />
           }} 
           />
 
@@ -417,10 +499,26 @@ class App extends Component {
         <Route path="/" exact render={()=>{
             return <Auth
             controls={this.state.controls}
+            controlSignUp = {this.state.controlSignUp}
+            changed = {(event, controlName)=>this.onChangeAuthHandler(event, controlName)}
+            changedSign =  {(event, controlName)=>this.onChangeSignupHandler(event, controlName)}
+            auth = {(event)=>this.authHandler(event)}
+            authSign = {(event)=>this.authSignupHandler(event)}
+            flash={this.state.flash}
+            />
+          }} />
+
+        <Route path="/err" exact render={()=>{
+            return <Error />
+          }} />
+
+        {/* <Route path="/sign/signup" exact render={()=>{
+            return <Signup
+            controls={this.state.controls}
             changed = {(event, controlName)=>this.onChangeAuthHandler(event, controlName)}
             auth = {(event)=>this.authHandler(event)}
             />
-          }} />
+          }} /> */}
 
           <Route path="/personalInfo" exact render={()=>{
             return <PersonalInfo

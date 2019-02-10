@@ -1,13 +1,22 @@
 .auth {
     width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn{
+    width: 20%;
 }
 
 .inp {
-    /* position: relative;
-    margin: auto;
-    width: 100%;
-    max-width: 280px; */
     width: 50%;
+}
+
+.auth input {
+    margin: 2rem 0 !important;
 }
 
 .label{

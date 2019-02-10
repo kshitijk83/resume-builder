@@ -8,3 +8,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+@media print {
+    *{
+        -webkit-print-color-adjust: exact;
+    }
+}
