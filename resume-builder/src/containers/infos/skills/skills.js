@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../UI/input/input';
 import { Link } from 'react-router-dom';
+import './skills.css';
 class skills extends Component{
 
     constructor(props) {
@@ -32,11 +33,21 @@ class skills extends Component{
             changed={(event)=>this.props.changed(event, s.skill.id)} />
         })
         return (
-            <>
+            <div className="box">
                 {input}
-                <button onClick={this.addNum} >add</button>
-                <Link to="/education" >next</Link>
-            </>
+                <div className="btn-container">
+                    <button onClick={this.addNum} >add</button>
+                    <Link to="/education" style={
+                    {
+                        backgroundColor: 'red',
+                        color: 'white',
+                        padding: '1em 1.5em',
+                        textDecoration: 'none',
+                        textTransform: 'uppercase'
+                    }
+                    }>next</Link>
+                </div>
+            </div>
         );
     }
     

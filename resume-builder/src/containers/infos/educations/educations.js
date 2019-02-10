@@ -72,11 +72,21 @@ class educations extends Component{
         });
 
         return (
-            <>
+            <div className="box">
                 {input}
-                <button onClick={this.addNum} >add</button>
-                <Link to="/projects" >Next</Link>
-            </>
+                <div className="btn-container">
+                    <button onClick={this.addNum} >add</button>
+                    <Link to="/projects" style={
+                        {
+                            backgroundColor: 'red',
+                            color: 'white',
+                            padding: '1em 1.5em',
+                            textDecoration: 'none',
+                            textTransform: 'uppercase'
+                        }
+                        } >Next</Link>
+                </div>
+            </div>
         );
     }
     
