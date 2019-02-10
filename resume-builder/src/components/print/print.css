@@ -5,7 +5,10 @@
     width: 100vw;
     background: white;
     z-index: 1000;
-    min-height: 100% !important;
+    min-height: 500vh !important;
+    position: absolute;
+    top: 0;
+    left: 0;
 
 }
 

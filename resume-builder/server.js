@@ -13,7 +13,7 @@ var express = require('express'),
     const ExtractJWT = passportJWT.ExtractJwt;
     const bcrypt = require('bcrypt'),
     port = process.env.PORT || 5000;
-
+var fxn = require("./control/auth")
 
     var url = 'mongodb://localhost/resume_builder'
     mongoose.connect(url, {
@@ -65,9 +65,7 @@ app.set("view engine", "ejs");
                 });
         }
     ));
-app.get("/", function(req, res){
-    res.render("test");
-});
+
 app.use("/", indexRoutes);
 app.use("/user/",userRoutes);
 app.listen(port, function(){

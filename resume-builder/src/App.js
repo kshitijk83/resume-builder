@@ -354,7 +354,7 @@ class App extends Component {
       let words = this.state;
       // console.log(this.state);
 
-      axios.post("http://localhost:5000/user/data", {
+      axios.post("http://localhost:5000/validate/login", {
         ...words
       })
         .then(res=>console.log(res))

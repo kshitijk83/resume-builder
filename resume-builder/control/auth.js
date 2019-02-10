@@ -1,9 +1,8 @@
 'use strict';
 
 const crypto = require('crypto');
-const models = require('models'),
-    User = models.user,
-    Token = models.token;
+const User = require('../models/user');
+
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const bcrypt = require('bcrypt');
