@@ -65,6 +65,11 @@ app.set("view engine", "ejs");
                 });
         }
     ));
+
+app.all("*", function (req, res, next) {
+    req.resp= {}
+})
+
 app.get("/", function(req, res){
     res.render("test");
 });
