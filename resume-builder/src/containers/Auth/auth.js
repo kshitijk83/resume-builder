@@ -3,6 +3,7 @@ import Input from '../../UI/input/input';
 import './auth.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import Signup from '../Auth/signup/signup';
+import logo from '../../assets/logo.png';
 
 class Auth extends Component{
 
@@ -83,6 +84,7 @@ class Auth extends Component{
         return(
             <>
             <div className="auth">
+            <img src={logo} className="image" />
                 <h1>{this.props.flash}</h1>
                 <button onClick={this.toggle} >{this.state.text}</button>
                 {this.state.signlog==='login'?<form onSubmit={(event)=>this.auth(event)}>{form}<button className="btn">Login</button></form>: null}

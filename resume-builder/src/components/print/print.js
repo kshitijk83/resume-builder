@@ -52,7 +52,6 @@ class Print extends Component {
             return (
                 <div key={p.extra.id} className="main-desc extra-desc">
                     {p.extra.value?<li className="extra-value">{p.extra.value}</li>:null}
-                    {p.extra.value?<button onClick={()=>this.props.delete(this.props.extras.indexOf(p), "extras")} >delete</button>:null}
                 </div>
             );
         })

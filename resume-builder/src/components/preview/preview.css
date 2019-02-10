@@ -126,3 +126,13 @@ btn-delete{
     display: flex;
     justify-content: space-between;
 }
+
+
+
+.left{
+    font-weight: bold;
+}
+
+.right{
+    font-style: italic;
+}

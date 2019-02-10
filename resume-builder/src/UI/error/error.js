@@ -3,7 +3,7 @@ import './error.css';
 
 const error = (props) => {
     return (
-        <div className="err">Somthing went wrong!</div>
+        <div className="err">Something went wrong!</div>
     );
 }
 
