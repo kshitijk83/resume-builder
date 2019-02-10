@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import PersonalInfo from './containers/infos/personalInfo/personalInfo';
 import Preview from './components/preview/preview';
 import Skills from './containers/infos/skills/skills';
@@ -150,7 +150,7 @@ class App extends Component {
         valid: false,
         touched: false
       },
-    }]
+    }],
   }
 
   onChangeHandler=(event, id)=>{
@@ -351,18 +351,27 @@ class App extends Component {
 
     authHandler=(event)=>{
       event.preventDefault();
-      let words = this.state;
-      // console.log(this.state);
+      let email = this.state.controls.email.value;
+      let password = this.state.controls.password.value;
+      // console.log(controls);
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+
+      console.log(localStorage);
+      this.props.history.push({
+        pathname: '/personalInfo'
+      });
 
       axios.post("http://localhost:5000/signup", {
-        ...words
+        email: email,
+        password: password
       })
         .then(res=>console.log(res))
         .catch(err=>console.log(err));
     }
 
   render() {
-
+    // console.log(this.props);
     const personalData = [];
     for(let key in this.state.personalInfo){
       
@@ -390,7 +399,8 @@ class App extends Component {
     return (
       <div className="App">
 
-          <Preview
+          <Route path="/:id" render={()=>{
+            return <Preview
             name={this.state.personalInfo.name.value}
             email={this.state.personalInfo.email.value}
             phone={this.state.personalInfo.phone.value}
@@ -399,6 +409,8 @@ class App extends Component {
             educations={this.state.educations}
             projects={this.state.projects}
             extras={this.state.extras}/>
+          }} 
+          />
 
         <Switch>
 
@@ -465,4 +477,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
